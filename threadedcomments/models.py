@@ -14,6 +14,11 @@ class ThreadedComment(Comment):
     last_child = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_('Last child'))
     tree_path = models.CharField(_('Tree path'), max_length=500, editable=False)
     newest_activity = models.DateTimeField(null=True)
+    
+    # Analytics section
+    # ----------------------------------------
+    # All fields below are populated directly by a pg_cron job
+    like_count = models.PositiveIntegerField(_("like_count"), default=0)
 
     objects = CommentManager()
 
